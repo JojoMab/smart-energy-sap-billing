@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+
+reports/*
+invoices/*
+!reports/.gitkeep
+!invoices/.gitkeep
+
+smart-energy-sap-billing/reports/
+smart-energy-sap-billing/invoices/
