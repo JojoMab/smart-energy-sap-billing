@@ -1,0 +1,6 @@
+customer_id,name,address,tariff_eur_per_kwh,feed_in_eur_per_kwh
+C001,Laura Schneider,"Bahnhofstrasse 18, 50667 Koeln",0.36,0.082
+C002,Mehmet Kaya,"Sonnenweg 7, 76131 Karlsruhe",0.34,0.082
+C003,Weber Baeckerei GmbH,"Marktplatz 3, 70173 Stuttgart",0.31,0.078
+C004,Familie Fischer,"Kirchweg 22, 90402 Nuernberg",0.35,0.082
+C005,Autohaus Rhein-Main GmbH,"Industriestrasse 41, 60549 Frankfurt am Main",0.29,0.075
