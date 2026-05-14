@@ -2,6 +2,10 @@
 
 Smart Energy SAP Billing System ist ein Python-Projekt, das Smart-Meter-Daten analysiert und daraus automatisch Energieberichte und Kundenrechnungen erzeugt. Der Ablauf ist bewusst SAP- und ERP-nah aufgebaut: Messdaten werden eingelesen, betriebswirtschaftlich bewertet und in abrechenbare Dokumente überführt.
 
+## GitHub-Beschreibung
+
+Python-Projekt für Smart-Meter-Analyse und SAP-nahes Energy Billing mit automatischen Reports und Rechnungen.
+
 ## Kurzprofil für Recruiter
 
 - Thema: Energiewirtschaft, Smart Metering, Billing und ERP-nahe Prozesse
@@ -59,11 +63,13 @@ Rechnung erstellt: invoices/invoice_C005_2026-05-14.txt
 ----------------------------------------
 ```
 
-Ein versionierter Terminal-Mitschnitt liegt hier:
+## Beispiele im Repository
 
-```txt
-examples/terminal_output.txt
-```
+Die Beispielausgaben sind bewusst versioniert, damit Recruiter das Ergebnis direkt auf GitHub prüfen können, ohne das Projekt lokal auszuführen:
+
+- [Terminal-Mitschnitt](examples/terminal_output.txt)
+
+Der Mitschnitt zeigt, welche Reports und Rechnungen beim Start für die Beispielkunden erzeugt werden.
 
 ## Projektstruktur
 
@@ -74,6 +80,7 @@ examples/terminal_output.txt
 │   ├── customers.csv
 │   └── meter_data.csv
 ├── examples/
+│   ├── README.md
 │   └── terminal_output.txt
 ├── invoices/
 ├── reports/
