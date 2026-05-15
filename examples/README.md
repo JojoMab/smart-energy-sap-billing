@@ -1,9 +1,9 @@
-# Beispiele
+# Examples
 
-Dieses Verzeichnis ist Teil des Repositorys, damit Recruiter die Terminalausgabe direkt auf GitHub sehen können.
+This directory is part of the repository so recruiters can inspect the terminal output directly on GitHub.
 
-## Dateien
+## Files
 
-- `terminal_output.txt`: Beispielausgabe von `python3 main.py`
+- `terminal_output.txt`: example output from `python3 main.py`
 
-Die generierten Reports und Rechnungen unter `reports/` und `invoices/` werden nicht versioniert. Das Beispiel zeigt, welche Dateien beim Start erstellt werden.
+Generated reports and invoices under `reports/` and `invoices/` are not versioned. The example shows which files are created when the project runs.

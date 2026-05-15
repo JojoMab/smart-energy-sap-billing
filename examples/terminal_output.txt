@@ -1,16 +1,16 @@
 $ python3 main.py
-Report erstellt: reports/smart_meter_report_C001.txt
-Rechnung erstellt: invoices/invoice_C001_2026-05-14.txt
+Report created: reports/smart_meter_report_C001.txt
+Invoice created: invoices/invoice_C001_2026-05-15.txt
 ----------------------------------------
-Report erstellt: reports/smart_meter_report_C002.txt
-Rechnung erstellt: invoices/invoice_C002_2026-05-14.txt
+Report created: reports/smart_meter_report_C002.txt
+Invoice created: invoices/invoice_C002_2026-05-15.txt
 ----------------------------------------
-Report erstellt: reports/smart_meter_report_C003.txt
-Rechnung erstellt: invoices/invoice_C003_2026-05-14.txt
+Report created: reports/smart_meter_report_C003.txt
+Invoice created: invoices/invoice_C003_2026-05-15.txt
 ----------------------------------------
-Report erstellt: reports/smart_meter_report_C004.txt
-Rechnung erstellt: invoices/invoice_C004_2026-05-14.txt
+Report created: reports/smart_meter_report_C004.txt
+Invoice created: invoices/invoice_C004_2026-05-15.txt
 ----------------------------------------
-Report erstellt: reports/smart_meter_report_C005.txt
-Rechnung erstellt: invoices/invoice_C005_2026-05-14.txt
+Report created: reports/smart_meter_report_C005.txt
+Invoice created: invoices/invoice_C005_2026-05-15.txt
 ----------------------------------------

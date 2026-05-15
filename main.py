@@ -25,7 +25,7 @@ def main():
 
     for customer_id, records in grouped_data.items():
         if customer_id not in customers:
-            print(f'Kunde nicht gefunden: {customer_id}')
+            print(f'Customer not found: {customer_id}')
             continue
 
         customer = customers[customer_id]
@@ -35,8 +35,8 @@ def main():
         report_file = write_energy_report(customer, analysis, REPORT_DIR)
         invoice_file = write_invoice(customer, analysis, bill, INVOICE_DIR)
 
-        print(f'Report erstellt: {report_file}')
-        print(f'Rechnung erstellt: {invoice_file}')
+        print(f'Report created: {report_file}')
+        print(f'Invoice created: {invoice_file}')
         print('-' * 40)
 
 

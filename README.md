@@ -1,77 +1,77 @@
 # Smart Energy SAP Billing System
 
-Smart Energy SAP Billing System ist ein Python-Projekt, das Smart-Meter-Daten analysiert und daraus automatisch Energieberichte und Kundenrechnungen erzeugt. Der Ablauf ist bewusst SAP- und ERP-nah aufgebaut: Messdaten werden eingelesen, betriebswirtschaftlich bewertet und in abrechenbare Dokumente überführt.
+Smart Energy SAP Billing System is a Python project that analyzes smart meter data and automatically creates energy reports and customer invoices. The workflow is intentionally close to SAP and ERP processes: measurement data is imported, evaluated from a business perspective and transformed into billable documents.
 
-## GitHub-Beschreibung
+## GitHub Description
 
-Python-Projekt für Smart-Meter-Analyse und SAP-nahes Energy Billing mit automatischen Reports und Rechnungen.
+Python project for smart meter analysis and SAP-like energy billing with automated reports and invoices.
 
-## Kurzprofil für Recruiter
+## Recruiter Snapshot
 
-- Thema: Energiewirtschaft, Smart Metering, Billing und ERP-nahe Prozesse
-- Technologie: Python, CSV-Verarbeitung, modulare Projektstruktur
-- Eingabe: Kundendaten und Smart-Meter-Messwerte
-- Ausgabe: Energieberichte und Rechnungen pro Kunde
-- Fokus: Verbindung von technischer Datenanalyse und kaufmännischer Abrechnung
+- Topic: energy industry, smart metering, billing and ERP-like processes
+- Technology: Python, CSV processing, modular project structure
+- Input: customer data and smart meter readings
+- Output: energy reports and invoices per customer
+- Focus: connection between technical data analysis and commercial billing
 
-## Praxisnaher Ablauf
+## Practical Workflow
 
-Das Projekt simuliert einen digitalen Prozess aus der Energiewirtschaft:
+The project simulates a digital process from the energy industry:
 
-1. Smart Meter liefern Messdaten.
-2. Das System liest Kunden- und Messdaten aus CSV-Dateien ein.
-3. Verbrauch, Erzeugung, Netzbezug und Einspeisung werden berechnet.
-4. Pro Kunde wird ein Energiebericht erstellt.
-5. Aus den Analysewerten wird automatisch eine Rechnung mit Einspeisevergütung erzeugt.
+1. Smart meters provide measurement data.
+2. The system reads customer and meter data from CSV files.
+3. Consumption, production, grid usage and feed-in are calculated.
+4. An energy report is created for each customer.
+5. The analysis values are transformed into an invoice with feed-in credit.
 
-## Funktionen
+## Features
 
-- Kundendaten einlesen
-- Smart-Meter-Daten einlesen
-- Verbrauch und Erzeugung berechnen
-- Netzbezug und Einspeisung auswerten
-- Lastspitzen erkennen
-- Monatsbilanz erstellen
-- Verbrauchsprognose ableiten
-- Rechnung mit Einspeisevergütung generieren
+- read customer data
+- read smart meter data
+- calculate consumption and production
+- evaluate grid usage and feed-in
+- detect peak loads
+- create a monthly balance
+- derive a consumption forecast
+- generate invoices with feed-in credit
 
-## Schnellstart
+## Quick Start
 
-Projekt aus dem Repository-Root starten:
+Run the project from the repository root:
 
 ```bash
 python3 main.py
 ```
 
-Erwartete Terminalausgabe:
+Expected terminal output:
 
 ```txt
-Report erstellt: reports/smart_meter_report_C001.txt
-Rechnung erstellt: invoices/invoice_C001_2026-05-14.txt
+Report created: reports/smart_meter_report_C001.txt
+Invoice created: invoices/invoice_C001_2026-05-15.txt
 ----------------------------------------
-Report erstellt: reports/smart_meter_report_C002.txt
-Rechnung erstellt: invoices/invoice_C002_2026-05-14.txt
+Report created: reports/smart_meter_report_C002.txt
+Invoice created: invoices/invoice_C002_2026-05-15.txt
 ----------------------------------------
-Report erstellt: reports/smart_meter_report_C003.txt
-Rechnung erstellt: invoices/invoice_C003_2026-05-14.txt
+Report created: reports/smart_meter_report_C003.txt
+Invoice created: invoices/invoice_C003_2026-05-15.txt
 ----------------------------------------
-Report erstellt: reports/smart_meter_report_C004.txt
-Rechnung erstellt: invoices/invoice_C004_2026-05-14.txt
+Report created: reports/smart_meter_report_C004.txt
+Invoice created: invoices/invoice_C004_2026-05-15.txt
 ----------------------------------------
-Report erstellt: reports/smart_meter_report_C005.txt
-Rechnung erstellt: invoices/invoice_C005_2026-05-14.txt
+Report created: reports/smart_meter_report_C005.txt
+Invoice created: invoices/invoice_C005_2026-05-15.txt
 ----------------------------------------
 ```
 
-## Beispiele im Repository
+## Examples
 
-Die Beispielausgaben sind bewusst versioniert, damit Recruiter das Ergebnis direkt auf GitHub prüfen können, ohne das Projekt lokal auszuführen:
+The example outputs are versioned intentionally so recruiters can inspect the result directly on GitHub without running the project locally:
 
-- [Terminal-Mitschnitt](examples/terminal_output.txt)
+- [Terminal output](examples/terminal_output.txt)
 
-Der Mitschnitt zeigt, welche Reports und Rechnungen beim Start für die Beispielkunden erzeugt werden.
+The terminal output shows which reports and invoices are generated for the sample customers.
 
-## Projektstruktur
+## Project Structure
 
 ```txt
 .
@@ -91,19 +91,19 @@ Der Mitschnitt zeigt, welche Reports und Rechnungen beim Start für die Beispiel
     └── report_writer.py
 ```
 
-## Eingabedaten
+## Input Data
 
-`data/customers.csv` enthält Kundendaten wie Tarif, Name und Kundennummer. `data/meter_data.csv` enthält die Messdaten je Kunde, zum Beispiel Verbrauch, Erzeugung und Zeitbezug.
+`data/customers.csv` contains customer information such as tariff, name and customer ID. `data/meter_data.csv` contains the meter readings per customer, including consumption, production and timestamp.
 
-## Ausgaben
+## Outputs
 
-Beim Start erzeugt das Programm pro Kunde:
+Running the program creates for each customer:
 
-- einen Energiebericht unter `reports/`
-- eine Rechnung unter `invoices/`
+- an energy report under `reports/`
+- an invoice under `invoices/`
 
-Die generierten Dateien sind Arbeitsprodukte des Programms und werden nicht als Quellcode benötigt.
+The generated files are working outputs of the program and are not required as source code.
 
-## Bewerbungsbezug
+## Portfolio Relevance
 
-Als Bewerberprojekt zeigt dieses Repository, wie technische Messdaten in einen ERP-nahen Geschäftsprozess überführt werden können. Es verbindet Informatik, Energiewirtschaft, Datenanalyse und kaufmännisches Billing in einem nachvollziehbaren Python-Workflow.
+This project shows how technical measurement data can be transformed into an ERP-like business process. It connects computer science, energy industry logic, data analysis and commercial billing in a traceable Python workflow.
