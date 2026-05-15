@@ -1,0 +1,7 @@
+customer_type,month,kwh,tariff_ct
+private,2026-01,420,32
+business,2026-01,1240,29
+public,2026-01,880,30
+private,2026-02,390,32
+business,2026-02,1190,29
+public,2026-02,910,30

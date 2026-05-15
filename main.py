@@ -1,44 +1,27 @@
-from collections import defaultdict
+import csv
+from dataclasses import dataclass
 
-from src.data_loader import load_customers, load_meter_data
-from src.analyzer import analyze_customer_energy
-from src.billing import calculate_bill
-from src.report_writer import write_energy_report, write_invoice
+@dataclass
+class Reading:
+    customer_type: str
+    month: str
+    kwh: float
+    tariff_ct: float
 
-CUSTOMERS_FILE = 'data/customers.csv'
-METER_DATA_FILE = 'data/meter_data.csv'
-REPORT_DIR = 'reports'
-INVOICE_DIR = 'invoices'
+def load_readings(path='data/energy_readings.csv'):
+    with open(path, newline='', encoding='utf-8') as f:
+        return [Reading(r['customer_type'], r['month'], float(r['kwh']), float(r['tariff_ct'])) for r in csv.DictReader(f)]
 
+def monthly_cost(reading):
+    return round(reading.kwh * reading.tariff_ct / 100, 2)
 
-def group_by_customer(meter_data):
-    grouped = defaultdict(list)
-    for record in meter_data:
-        grouped[record['customer_id']].append(record)
-    return grouped
+def co2_kg(reading):
+    return round(reading.kwh * 0.38, 2)
 
-
-def main():
-    customers = load_customers(CUSTOMERS_FILE)
-    meter_data = load_meter_data(METER_DATA_FILE)
-    grouped_data = group_by_customer(meter_data)
-
-    for customer_id, records in grouped_data.items():
-        if customer_id not in customers:
-            print(f'Customer not found: {customer_id}')
-            continue
-
-        customer = customers[customer_id]
-        analysis = analyze_customer_energy(records)
-        bill = calculate_bill(customer, analysis)
-
-        report_file = write_energy_report(customer, analysis, REPORT_DIR)
-        invoice_file = write_invoice(customer, analysis, bill, INVOICE_DIR)
-
-        print(f'Report created: {report_file}')
-        print(f'Invoice created: {invoice_file}')
-        print('-' * 40)
-
+def recommendation(reading):
+    if reading.kwh > 900: return 'check efficiency potential'
+    return 'regular consumption'
 
 if __name__ == '__main__':
-    main()
+    total = sum(monthly_cost(r) for r in load_readings())
+    print(f'Report generated successfully. Total cost EUR: {total:.2f}')
