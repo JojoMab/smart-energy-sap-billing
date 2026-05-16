@@ -1,67 +1,67 @@
 # Smart Energy SAP Billing
 
-Python-Projekt zur Analyse synthetischer Energieverbrauchs- und Billing-Daten mit Tarifvergleich, CO2-Auswertung und Handlungsempfehlungen.
+![Python CI](https://github.com/JojoMab/smart-energy-sap-billing/actions/workflows/python-ci.yml/badge.svg)
 
-## Kurzprofil fuer Recruiter
+Dieses Bewerberprojekt simuliert eine ERP-nahe Billing-Simulation für Energieverbrauchsdaten. Es zeigt SAP-nahe Prozesslogik, Tarifberechnung, Verbrauchsanalyse, CO2-Auswertung und eine einfache Prognose auf Basis synthetischer Daten.
 
-Dieses Repository ist ein Bewerberprojekt fuer duale Studiengaenge in Wirtschaftsinformatik, Informatik, Data Science und KI-nahen Themen. Es nutzt synthetische Daten, eine bewusst einfache Projektstruktur und nachvollziehbare Reports, damit fachliche und technische Grundlagen schnell erkennbar sind.
+## Bewerbungskontext
 
-## Bewerbungsbezug
-
-Das Projekt zeigt Energiewirtschaft, Verbrauchsdatenanalyse, Billing, ERP-/SAP-nahe Prozessbegriffe, Nachhaltigkeit und Reporting.
-
-## Passende Zielunternehmen
-
-MONTANA Energie, Siemens Energy, Infineon, Cpro Conlog und ERP-nahe Wirtschaftsinformatik.
+Das Projekt passt zu Wirtschaftsinformatik, Energie-IT und ERP-nahen Studiengängen. Es ist relevant für MONTANA Energie, Siemens Energy, Infineon und Cpro Conlog.
 
 ## Tech Stack
 
-- Python 3
+- Python 3.11
 - CSV-Verarbeitung
-- regelbasierte Analyse und einfache Kennzahlen
-- Unit Tests mit unittest
-- GitHub Actions CI
+- Tariflogik
+- CO2-Auswertung
+- Unit Tests
+- GitHub Actions
 
 ## Funktionen
 
-- synthetische CSV-Daten laden
-- Eingabedaten validieren
-- Kennzahlen berechnen
-- Risiken oder Prioritaeten einstufen
-- Report als Text ausgeben
-- Beispielausgabe versionieren
+- Kundentypen HOUSEHOLD, BUSINESS und INDUSTRIAL verarbeiten
+- Monatsverbräuche auswerten
+- Grundpreis, Arbeitspreis und Steuern berechnen
+- CO2-Werte mit Faktor 0,233 kg/kWh berechnen
+- einfache Prognose über gleitenden Durchschnitt erzeugen
 
 ## Projektstruktur
 
 ```txt
 smart-energy-sap-billing/
 ├── main.py
-├── data/
-├── docs/
-│   ├── application_fit.md
-│   └── recruiter_summary_de.md
-├── examples/
-│   └── terminal_output.txt
+├── src/billing.py
+├── src/energy_report.py
+├── src/forecast.py
+├── data/customer_data.csv
+├── data/consumption_data.csv
 ├── tests/
-└── .github/workflows/python-ci.yml
+└── docs/
 ```
 
 ## Schnellstart
 
 ```bash
-python3 main.py
+python main.py
 ```
 
 ## Tests
 
 ```bash
-python3 -m unittest discover -s tests
+python -m unittest discover -s tests -v
 ```
 
-## Hinweis
+## Beispielausgabe
 
-Alle Daten sind synthetisch. Das Projekt bildet kein echtes Unternehmenssystem ab und behauptet keine echte Praxiserfahrung.
+```txt
+ERP-nahe Billing-Simulation abgeschlossen.
+Familie Weber: letzte Rechnung 166.66 EUR, CO2 1123.73 kg, Prognose 438.33 kWh
+```
+
+## Hinweis auf synthetische Daten
+
+Alle Kunden- und Verbrauchsdaten sind synthetisch. Das Projekt ist eine SAP-nahe Prozesslogik und keine Abbildung realer SAP-Landschaften.
 
 ## English Summary
 
-Applicant portfolio project using synthetic data to demonstrate basic software structure, data processing, reporting and business/IT understanding.
+This project simulates an ERP-related energy billing workflow with synthetic smart meter data. It demonstrates tariff logic, CO2 reporting, forecasting and testable Python modules.

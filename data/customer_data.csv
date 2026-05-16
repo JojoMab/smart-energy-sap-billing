@@ -1,0 +1,4 @@
+customer_id,customer_name,customer_type
+E001,Familie Weber,HOUSEHOLD
+E002,Bäckerei Klein,BUSINESS
+E003,Metallbau Süd,INDUSTRIAL

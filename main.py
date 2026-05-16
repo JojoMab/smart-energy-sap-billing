@@ -1,27 +1,47 @@
 import csv
 from dataclasses import dataclass
 
+from src.billing import calculate_bill
+from src.energy_report import calculate_co2
+from src.forecast import moving_average_forecast
+
+
 @dataclass
 class Reading:
     customer_type: str
     month: str
     kwh: float
-    tariff_ct: float
+    days: int
 
-def load_readings(path='data/energy_readings.csv'):
-    with open(path, newline='', encoding='utf-8') as f:
-        return [Reading(r['customer_type'], r['month'], float(r['kwh']), float(r['tariff_ct'])) for r in csv.DictReader(f)]
 
 def monthly_cost(reading):
-    return round(reading.kwh * reading.tariff_ct / 100, 2)
+    """Compatibility helper for the original simple project tests."""
+    return round(float(reading.kwh) * 0.31, 2)
+
 
 def co2_kg(reading):
-    return round(reading.kwh * 0.38, 2)
+    """Compatibility helper for the original simple project tests."""
+    return round(float(reading.kwh) * 0.38, 2)
+
 
 def recommendation(reading):
-    if reading.kwh > 900: return 'check efficiency potential'
-    return 'regular consumption'
+    return "check efficiency potential" if float(reading.kwh) >= 800 else "normal usage"
 
-if __name__ == '__main__':
-    total = sum(monthly_cost(r) for r in load_readings())
-    print(f'Report generated successfully. Total cost EUR: {total:.2f}')
+
+def load_csv(path):
+    with open(path, newline="", encoding="utf-8") as file:
+        return list(csv.DictReader(file))
+
+
+def main():
+    customers = {row["customer_id"]: row for row in load_csv("data/customer_data.csv")}
+    consumption = load_csv("data/consumption_data.csv")
+    print("ERP-nahe Billing-Simulation abgeschlossen.")
+    for customer_id, customer in customers.items():
+        values = [float(row["kwh"]) for row in consumption if row["customer_id"] == customer_id]
+        latest_bill = calculate_bill(customer["customer_type"], values[-1])
+        print(f"{customer['customer_name']}: letzte Rechnung {latest_bill:.2f} EUR, CO2 {calculate_co2(sum(values)):.2f} kg, Prognose {moving_average_forecast(values):.2f} kWh")
+
+
+if __name__ == "__main__":
+    main()
