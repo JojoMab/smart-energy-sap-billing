@@ -1,6 +1,6 @@
-# Smart Energy SAP Billing
-
 ![Python CI](https://github.com/JojoMab/smart-energy-sap-billing/actions/workflows/python-ci.yml/badge.svg)
+
+# Smart Energy SAP Billing
 
 Dieses Bewerberprojekt simuliert eine ERP-nahe Billing-Simulation für Energieverbrauchsdaten. Es zeigt SAP-nahe Prozesslogik, Tarifberechnung, Verbrauchsanalyse, CO2-Auswertung und eine einfache Prognose auf Basis synthetischer Daten.
 
@@ -45,7 +45,7 @@ smart-energy-sap-billing/
 python main.py
 ```
 
-## Tests
+## Tests ausführen
 
 ```bash
 python -m unittest discover -s tests -v
@@ -60,7 +60,7 @@ Familie Weber: letzte Rechnung 166.66 EUR, CO2 1123.73 kg, Prognose 438.33 kWh
 
 ## Hinweis auf synthetische Daten
 
-Alle Kunden- und Verbrauchsdaten sind synthetisch. Das Projekt ist eine SAP-nahe Prozesslogik und keine Abbildung realer SAP-Landschaften.
+Alle Daten sind synthetisch und dienen ausschließlich der Demonstration.
 
 ## English Summary
 

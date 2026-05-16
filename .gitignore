@@ -9,3 +9,14 @@ invoices/*
 
 smart-energy-sap-billing/reports/
 smart-energy-sap-billing/invoices/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.env
+venv/
+charts/
+reports/
+data/*.db
