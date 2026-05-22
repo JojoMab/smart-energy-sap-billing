@@ -8,7 +8,7 @@ Dieses Bewerberprojekt analysiert synthetische Smart-Meter-Verbrauchs- und Abrec
 
 Das Projekt ist als Portfolioarbeit für Bewerbungen im Bereich Wirtschaftsinformatik, Energie-IT, datenorientierte Softwareentwicklung und technische Analyse gedacht. Es zeigt, wie Verbrauchsdaten strukturiert eingelesen, fachlich ausgewertet und mit Tests abgesichert werden können.
 
-## Tech Stack
+## Technologie-Stack
 
 - Python 3.11
 - CSV-Verarbeitung
@@ -96,6 +96,6 @@ Alle Daten sind synthetisch und dienen ausschließlich der Demonstration.
 
 Dieses Projekt ist ein Bewerberprojekt und nicht für den produktiven Einsatz vorgesehen.
 
-## English Summary
+## Kurzfassung
 
-This applicant project analyzes synthetic energy consumption and billing data with Python. It demonstrates a CSV-to-report-to-invoice pipeline, tariff logic, CO2 reporting, a simple moving-average forecast and automated tests.
+Dieses Bewerberprojekt analysiert synthetische Energieverbrauchs- und Abrechnungsdaten mit Python. Es zeigt eine nachvollziehbare Pipeline von CSV-Daten über einen Billing-Report bis zu Rechnungen sowie Tariflogik, CO2-Auswertung, Prognose und Tests.
