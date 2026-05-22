@@ -2,7 +2,7 @@
 
 ## Kurzbeschreibung
 
-Python-Projekt zur Analyse synthetischer Energieverbrauchs- und Billing-Daten mit Tarifvergleich, CO2-Auswertung und Handlungsempfehlungen.
+Python-Bewerberprojekt zur Analyse synthetischer Energieverbrauchs- und Billing-Daten mit Tariflogik, CO2-Auswertung und einfacher Prognose.
 
 ## Sichtbare Kompetenzen
 
@@ -16,4 +16,6 @@ Python-Projekt zur Analyse synthetischer Energieverbrauchs- und Billing-Daten mi
 
 ## Datenhinweis
 
-Die Daten sind synthetisch und dienen nur der Demonstration.
+Alle Daten sind synthetisch und dienen ausschließlich der Demonstration.
+
+Dieses Projekt ist ein Bewerberprojekt und nicht für den produktiven Einsatz vorgesehen.

@@ -1,60 +1,73 @@
-import os
-from datetime import date
+import csv
+from pathlib import Path
+
+from src.billing import calculate_bill
+from src.energy_report import calculate_co2
+from src.forecast import moving_average_forecast
 
 
-def write_energy_report(customer, analysis, output_dir):
-    os.makedirs(output_dir, exist_ok=True)
-    filename = os.path.join(output_dir, f"smart_meter_report_{customer['customer_id']}.txt")
-
-    with open(filename, 'w', encoding='utf-8') as file:
-        file.write('Smart Meter Energy Report\n')
-        file.write('=========================\n\n')
-        file.write(f"Customer ID: {customer['customer_id']}\n")
-        file.write(f"Name: {customer['name']}\n\n")
-        file.write(f"Total consumption: {analysis['total_consumption']:.2f} kWh\n")
-        file.write(f"Total production: {analysis['total_production']:.2f} kWh\n")
-        file.write(f"Grid usage: {analysis['grid_usage']:.2f} kWh\n")
-        file.write(f"Feed-in: {analysis['feed_in']:.2f} kWh\n")
-        file.write(f"Next-month forecast: {analysis['forecast_month']:.2f} kWh\n\n")
-
-        file.write('Monthly balance:\n')
-        for month, values in analysis['monthly'].items():
-            balance = values['production'] - values['consumption']
-            file.write(f"{month}: consumption {values['consumption']:.2f} kWh, production {values['production']:.2f} kWh, balance {balance:.2f} kWh\n")
-
-        file.write('\nPeak loads:\n')
-        if analysis['peaks']:
-            for peak in analysis['peaks']:
-                file.write(f"{peak['timestamp']} - {peak['consumption']:.2f} kWh\n")
-        else:
-            file.write('No peak loads detected.\n')
-
-    return filename
+REPORT_FIELDS = [
+    "customer_id",
+    "customer_name",
+    "customer_type",
+    "billing_month",
+    "latest_kwh",
+    "annual_kwh",
+    "invoice_amount_eur",
+    "co2_kg",
+    "forecast_next_month_kwh",
+]
 
 
-def write_invoice(customer, analysis, bill, output_dir):
-    os.makedirs(output_dir, exist_ok=True)
-    filename = os.path.join(output_dir, f"invoice_{customer['customer_id']}_{date.today()}.txt")
+def customer_consumption_rows(customer_id, consumption_rows):
+    return sorted(
+        [row for row in consumption_rows if row["customer_id"] == customer_id],
+        key=lambda row: row["month"],
+    )
 
-    with open(filename, 'w', encoding='utf-8') as file:
-        file.write('Smart Energy SAP-like Invoice\n')
-        file.write('=============================\n\n')
-        file.write(f"Invoice date: {date.today()}\n")
-        file.write(f"Customer ID: {customer['customer_id']}\n")
-        file.write(f"Name: {customer['name']}\n")
-        file.write(f"Address: {customer['address']}\n\n")
 
-        file.write('Meter data:\n')
-        file.write(f"Total consumption: {analysis['total_consumption']:.2f} kWh\n")
-        file.write(f"Total production: {analysis['total_production']:.2f} kWh\n")
-        file.write(f"Grid usage: {analysis['grid_usage']:.2f} kWh\n")
-        file.write(f"Feed-in: {analysis['feed_in']:.2f} kWh\n\n")
+def build_billing_report_row(customer, consumption_rows):
+    rows = customer_consumption_rows(customer["customer_id"], consumption_rows)
+    if not rows:
+        raise ValueError(f"No consumption data found for customer {customer['customer_id']}")
 
-        file.write('Billing:\n')
-        file.write(f"Energy tariff: {customer['tariff']:.2f} EUR/kWh\n")
-        file.write(f"Feed-in tariff: {customer['feed_in_tariff']:.2f} EUR/kWh\n")
-        file.write(f"Energy cost: {bill['energy_cost']:.2f} EUR\n")
-        file.write(f"Feed-in credit: {bill['feed_in_credit']:.2f} EUR\n")
-        file.write(f"Total amount: {bill['net_amount']:.2f} EUR\n")
+    values = [float(row["kwh"]) for row in rows]
+    latest_row = rows[-1]
+    latest_kwh = float(latest_row["kwh"])
+    annual_kwh = sum(values)
 
-    return filename
+    return {
+        "customer_id": customer["customer_id"],
+        "customer_name": customer["customer_name"],
+        "customer_type": customer["customer_type"],
+        "billing_month": latest_row["month"],
+        "latest_kwh": f"{latest_kwh:.2f}",
+        "annual_kwh": f"{annual_kwh:.2f}",
+        "invoice_amount_eur": f"{calculate_bill(customer['customer_type'], latest_kwh):.2f}",
+        "co2_kg": f"{calculate_co2(annual_kwh):.2f}",
+        "forecast_next_month_kwh": f"{moving_average_forecast(values):.2f}",
+    }
+
+
+def build_billing_report(customers, consumption_rows):
+    return [
+        build_billing_report_row(customer, consumption_rows)
+        for customer in customers
+    ]
+
+
+def write_billing_report(report_rows, output_path="reports/billing_report.csv"):
+    path = Path(output_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with path.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=REPORT_FIELDS)
+        writer.writeheader()
+        writer.writerows(report_rows)
+
+    return path
+
+
+def read_billing_report(path="reports/billing_report.csv"):
+    with Path(path).open(newline="", encoding="utf-8") as file:
+        return list(csv.DictReader(file))

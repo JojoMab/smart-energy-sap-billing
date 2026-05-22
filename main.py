@@ -1,31 +1,11 @@
 import csv
-from dataclasses import dataclass
 
-from src.billing import calculate_bill
-from src.energy_report import calculate_co2
-from src.forecast import moving_average_forecast
-
-
-@dataclass
-class Reading:
-    customer_type: str
-    month: str
-    kwh: float
-    days: int
-
-
-def monthly_cost(reading):
-    """Compatibility helper for the original simple project tests."""
-    return round(float(reading.kwh) * 0.31, 2)
-
-
-def co2_kg(reading):
-    """Compatibility helper for the original simple project tests."""
-    return round(float(reading.kwh) * 0.38, 2)
-
-
-def recommendation(reading):
-    return "check efficiency potential" if float(reading.kwh) >= 800 else "normal usage"
+from src.invoice_writer import write_invoices_from_report
+from src.report_writer import (
+    build_billing_report,
+    read_billing_report,
+    write_billing_report,
+)
 
 
 def load_csv(path):
@@ -34,13 +14,22 @@ def load_csv(path):
 
 
 def main():
-    customers = {row["customer_id"]: row for row in load_csv("data/customer_data.csv")}
+    customers = load_csv("data/customer_data.csv")
     consumption = load_csv("data/consumption_data.csv")
-    print("ERP-nahe Billing-Simulation abgeschlossen.")
-    for customer_id, customer in customers.items():
-        values = [float(row["kwh"]) for row in consumption if row["customer_id"] == customer_id]
-        latest_bill = calculate_bill(customer["customer_type"], values[-1])
-        print(f"{customer['customer_name']}: letzte Rechnung {latest_bill:.2f} EUR, CO2 {calculate_co2(sum(values)):.2f} kg, Prognose {moving_average_forecast(values):.2f} kWh")
+
+    report_rows = build_billing_report(customers, consumption)
+    report_path = write_billing_report(report_rows)
+    invoice_paths = write_invoices_from_report(read_billing_report(report_path))
+
+    print("Energy-Billing-Auswertung abgeschlossen.")
+    print(f"Billing-Report in {report_path} gespeichert.")
+    for row in report_rows:
+        print(
+            f"{row['customer_name']}: letzte Rechnung {float(row['invoice_amount_eur']):.2f} EUR, "
+            f"CO2 {float(row['co2_kg']):.2f} kg, "
+            f"Prognose {float(row['forecast_next_month_kwh']):.2f} kWh"
+        )
+    print(f"{len(invoice_paths)} Rechnungen aus Billing-Report in invoices/ gespeichert.")
 
 
 if __name__ == "__main__":

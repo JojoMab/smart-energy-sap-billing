@@ -1,1 +1,6 @@
-Report generated successfully.
+Energy-Billing-Auswertung abgeschlossen.
+Billing-Report in reports/billing_report.csv gespeichert.
+Familie Weber: letzte Rechnung 158.98 EUR, CO2 1209.27 kg, Prognose 438.33 kWh
+Bäckerei Klein: letzte Rechnung 462.91 EUR, CO2 3641.79 kg, Prognose 1308.33 kWh
+Metallbau Süd: letzte Rechnung 1930.18 EUR, CO2 18041.19 kg, Prognose 6458.33 kWh
+3 Rechnungen aus Billing-Report in invoices/ gespeichert.

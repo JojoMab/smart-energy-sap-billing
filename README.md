@@ -1,12 +1,12 @@
-![Python CI](https://github.com/JojoMab/smart-energy-sap-billing/actions/workflows/python-ci.yml/badge.svg)
+![Python CI](https://github.com/JojoMab/smart-energy-billing-analyzer/actions/workflows/python-ci.yml/badge.svg)
 
-# Smart Energy SAP Billing
+# Smart Energy Billing Analyzer
 
-Dieses Bewerberprojekt simuliert eine ERP-nahe Billing-Simulation für Energieverbrauchsdaten. Es zeigt SAP-nahe Prozesslogik, Tarifberechnung, Verbrauchsanalyse, CO2-Auswertung und eine einfache Prognose auf Basis synthetischer Daten.
+Dieses Bewerberprojekt analysiert synthetische Smart-Meter-Verbrauchs- und Abrechnungsdaten mit Python. Es zeigt eine nachvollziehbare Pipeline von CSV-Verbrauchsdaten über einen strukturierten Billing-Report bis zu automatisch erzeugten Rechnungen.
 
 ## Bewerbungskontext
 
-Das Projekt passt zu Wirtschaftsinformatik, Energie-IT und ERP-nahen Studiengängen. Es ist relevant für MONTANA Energie, Siemens Energy, Infineon und Cpro Conlog.
+Das Projekt ist als Portfolioarbeit für Bewerbungen im Bereich Wirtschaftsinformatik, Energie-IT, datenorientierte Softwareentwicklung und technische Analyse gedacht. Es zeigt, wie Verbrauchsdaten strukturiert eingelesen, fachlich ausgewertet und mit Tests abgesichert werden können.
 
 ## Tech Stack
 
@@ -14,6 +14,9 @@ Das Projekt passt zu Wirtschaftsinformatik, Energie-IT und ERP-nahen Studiengän
 - CSV-Verarbeitung
 - Tariflogik
 - CO2-Auswertung
+- einfache Verbrauchsprognose
+- Billing-Report als CSV
+- Rechnungserzeugung aus dem Report
 - Unit Tests
 - GitHub Actions
 
@@ -24,44 +27,75 @@ Das Projekt passt zu Wirtschaftsinformatik, Energie-IT und ERP-nahen Studiengän
 - Grundpreis, Arbeitspreis und Steuern berechnen
 - CO2-Werte mit Faktor 0,233 kg/kWh berechnen
 - einfache Prognose über gleitenden Durchschnitt erzeugen
+- `reports/billing_report.csv` als fachliche Zwischenstufe erzeugen
+- Rechnungen pro Kunde aus dem Billing-Report in `invoices/` speichern
+- Beispielausgabe für Recruiter und technische Prüfer bereitstellen
 
 ## Projektstruktur
 
 ```txt
-smart-energy-sap-billing/
+smart-energy-billing-analyzer/
 ├── main.py
-├── src/billing.py
-├── src/energy_report.py
-├── src/forecast.py
-├── data/customer_data.csv
-├── data/consumption_data.csv
+├── data/
+│   ├── customer_data.csv
+│   └── consumption_data.csv
+├── docs/
+│   ├── application_fit.md
+│   └── recruiter_summary_de.md
+├── examples/
+│   ├── README.md
+│   └── terminal_output.txt
+├── invoices/
+├── reports/
 ├── tests/
-└── docs/
+├── src/
+│   ├── billing.py
+│   ├── energy_report.py
+│   ├── forecast.py
+│   ├── invoice_writer.py
+│   └── report_writer.py
+├── requirements.txt
+└── .gitignore
+```
+
+## Ablauf
+
+```txt
+CSV-Verbrauchsdaten
+→ Billing-Report unter reports/billing_report.csv
+→ Rechnungen pro Kunde unter invoices/
 ```
 
 ## Schnellstart
 
 ```bash
+python -m pip install -r requirements.txt
 python main.py
 ```
 
 ## Tests ausführen
 
 ```bash
-python -m unittest discover -s tests -v
+python -m pytest tests/ -v
 ```
 
 ## Beispielausgabe
 
 ```txt
-ERP-nahe Billing-Simulation abgeschlossen.
-Familie Weber: letzte Rechnung 166.66 EUR, CO2 1123.73 kg, Prognose 438.33 kWh
+Energy-Billing-Auswertung abgeschlossen.
+Billing-Report in reports/billing_report.csv gespeichert.
+Familie Weber: letzte Rechnung 158.98 EUR, CO2 1209.27 kg, Prognose 438.33 kWh
+Bäckerei Klein: letzte Rechnung 462.91 EUR, CO2 3641.79 kg, Prognose 1308.33 kWh
+Metallbau Süd: letzte Rechnung 1930.18 EUR, CO2 18041.19 kg, Prognose 6458.33 kWh
+3 Rechnungen aus Billing-Report in invoices/ gespeichert.
 ```
 
 ## Hinweis auf synthetische Daten
 
 Alle Daten sind synthetisch und dienen ausschließlich der Demonstration.
 
+Dieses Projekt ist ein Bewerberprojekt und nicht für den produktiven Einsatz vorgesehen.
+
 ## English Summary
 
-This project simulates an ERP-related energy billing workflow with synthetic smart meter data. It demonstrates tariff logic, CO2 reporting, forecasting and testable Python modules.
+This applicant project analyzes synthetic energy consumption and billing data with Python. It demonstrates a CSV-to-report-to-invoice pipeline, tariff logic, CO2 reporting, a simple moving-average forecast and automated tests.
